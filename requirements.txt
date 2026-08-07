@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg[binary]
+pgvector
+sentence-transformers
+groq
+pydantic
+python-dotenv
+jinja2
+pytest
+httpx
+python-multipart
