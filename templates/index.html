@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI Documentation Assistant</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 720px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        p.subtitle {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 90px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        button {
+            align-self: flex-end;
+            background-color: var(--accent-color);
+            color: #0f172a;
+            border: none;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .result-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .result-section h2 {
+            margin-top: 0;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .answer-box {
+            background-color: #0f172a;
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .sources-section {
+            margin-top: 16px;
+        }
+
+        .sources-section h3 {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        ul.sources-list {
+            list-style-type: disc;
+            padding-left: 24px;
+            margin: 0;
+            color: var(--accent-color);
+        }
+
+        ul.sources-list li {
+            margin-bottom: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #334155;
+            color: #94a3b8;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Documentation Assistant</h1>
+            <p class="subtitle">Ask any question about FastAPI documentation</p>
+        </header>
+
+        <form action="/" method="post">
+            <label for="question">Ask a question:</label>
+            <textarea id="question" name="question" placeholder="e.g. How do I create a POST endpoint in FastAPI?" required>{{ question or '' }}</textarea>
+            <button type="submit">Ask</button>
+        </form>
+
+        {% if answer %}
+        <div class="result-section">
+            <h2>Answer</h2>
+            <div class="answer-box">{{ answer }}</div>
+
+            {% if sources %}
+            <div class="sources-section">
+                <h3>Sources:</h3>
+                <ul class="sources-list">
+                    {% for src in sources %}
+                    <li>{{ src }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
