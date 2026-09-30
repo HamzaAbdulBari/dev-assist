@@ -73,7 +73,7 @@ pip install -r requirements.txt
 Ensure PostgreSQL is running with the `pgvector` extension installed. If using Docker, you can run:
 
 ```bash
-docker run -d --name rag-postgres -p 5433:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=Hamza123 -e POSTGRES_DB=rag_db pgvector/pgvector:pg18
+docker run -d --name rag-postgres -p 5433:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=Your_Pass -e POSTGRES_DB=rag_db pgvector/pgvector:pg18
 ```
 
 The application automatically executes `CREATE EXTENSION IF NOT EXISTS vector;` and creates the `chunks` table when initialized.
@@ -89,7 +89,7 @@ cp .env.example .env
 Configure your parameters in `.env`:
 
 ```env
-DATABASE_URL=postgresql+psycopg://postgres:Hamza123@localhost:5433/rag_db
+DATABASE_URL=postgresql+psycopg://postgres:pass@localhost:5433/rag_db
 GROQ_API_KEY=gsk_your_actual_groq_api_key_here
 GROQ_MODEL=qwen/qwen3.8-27b
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
